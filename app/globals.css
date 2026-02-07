@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  /* Modern Dark Theme with Peach/Orange Accents */
+  --background: #0f0f0f;
+  /* Deep Charcoal/Black */
+  --foreground: #f0f0f0;
+  /* Off-white text */
+
+  /* Gradient Brand Colors */
+  --primary: #FF8C61;
+  /* Peach/Orange */
+  --primary-dark: #e65100;
+  --secondary: #FFD166;
+  /* Soft Yellow/Gold */
+  --accent: #F15BB5;
+  /* Pink/Magenta accent for gradients */
+
+  --muted: #1a1a1a;
+  --muted-foreground: #a0a0a0;
+
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Custom Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 4s ease-in-out infinite alternate;
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px var(--primary);
+    }
+
+    to {
+      box-shadow: 0 0 20px 5px var(--primary);
+    }
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-nav {
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Text Gradients */
+.text-gradient {
+  background: linear-gradient(135deg, #FF8C61 0%, #FFD166 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

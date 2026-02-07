@@ -1,0 +1,143 @@
+'use client';
+
+import { Smartphone, Cloud, FileText, CheckCircle, Flame, Factory, Lock } from 'lucide-react';
+import Link from 'next/link';
+
+export default function TechnologyPage() {
+    return (
+        <div className="bg-[#0f0f0f] text-white min-h-screen pt-20">
+            {/* Header */}
+            <div className="relative py-24 overflow-hidden border-b border-white/5">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px]" />
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                    <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
+                        Building <span className="text-gradient">Smart Safety</span>
+                    </h1>
+                    <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        Digital tools to streamline inspections, ensure compliance, and provide real-time analytics.
+                    </p>
+                </div>
+            </div>
+
+            {/* Tech Stack Highlights */}
+            <div className="py-12 bg-white/5 border-b border-white/5">
+                <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                    <div className="flex items-center gap-3"><Cloud className="text-primary" /> Cloud Native</div>
+                    <div className="flex items-center gap-3"><Lock className="text-secondary" /> Enterprise Security</div>
+                    <div className="flex items-center gap-3"><Smartphone className="text-blue-400" /> Mobile First</div>
+                    <div className="flex items-center gap-3"><FileText className="text-green-400" /> Auto Reporting</div>
+                </div>
+            </div>
+
+            {/* Fire Extinguisher App */}
+            <section id="fire-app" className="py-24">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                        <div className="order-2 md:order-1 relative">
+                            {/* Mockup Placeholder */}
+                            <div className="relative mx-auto border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl flex flex-col overflow-hidden">
+                                <div className="h-[32px] bg-gray-800 rounded-t-[2.5rem] w-full absolute top-0 left-0 z-20"></div>
+                                <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
+                                <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
+                                <div className="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
+                                <div className="rounded-[2rem] overflow-hidden w-full h-full bg-[#1a1a1a] relative flex items-center justify-center">
+                                    {/* Screen Content */}
+                                    <div className="p-6 text-center">
+                                        <Flame size={48} className="text-red-500 mx-auto mb-4" />
+                                        <h4 className="text-xl font-bold mb-2">My Inspection</h4>
+                                        <div className="space-y-3 mt-8">
+                                            <div className="bg-white/10 p-3 rounded-lg text-sm flex justify-between">
+                                                <span>Extinguisher #01</span>
+                                                <span className="text-green-400">Pass</span>
+                                            </div>
+                                            <div className="bg-white/10 p-3 rounded-lg text-sm flex justify-between">
+                                                <span>Extinguisher #02</span>
+                                                <span className="text-green-400">Pass</span>
+                                            </div>
+                                            <div className="bg-white/10 p-3 rounded-lg text-sm flex justify-between">
+                                                <span>Extinguisher #03</span>
+                                                <span className="text-red-400">Fail</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px]" />
+                        </div>
+                        <div className="order-1 md:order-2">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 text-red-500 text-sm font-bold uppercase tracking-wider mb-6">
+                                <Flame size={16} /> Flagship Product
+                            </div>
+                            <h2 className="text-4xl font-bold text-white mb-6">Fire Extinguisher Inspection App</h2>
+                            <p className="text-gray-400 text-lg leading-relaxed mb-8">
+                                A revolutionary way to manage fire safety. Our cloud-based app uses QR codes to ensure inspections are done physically and on time with our unique "48-hour lock" feature.
+                            </p>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+                                <FeatureItem title="QR Code Scan" desc="Ensures physical presence at the extinguisher location." />
+                                <FeatureItem title="Cloud Storage" desc="Secure, unlimited history of all compliance data." />
+                                <FeatureItem title="Auto Reports" desc="Generates PDF reports instantly for audits." />
+                                <FeatureItem title="48-Hour Lock" desc="Prevents bulk-filling; forces scheduled periodic checks." />
+                            </div>
+
+                            <Link href="/contact" className="text-primary font-bold hover:text-white transition-colors flex items-center gap-2 group">
+                                Schedule a Demo <span className="group-hover:translate-x-1 transition-transform">→</span>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Machine Inspection App */}
+            <section id="machine-app" className="py-24 bg-white/5 relative">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 text-sm font-bold uppercase tracking-wider mb-6">
+                                <Factory size={16} /> Asset Management
+                            </div>
+                            <h2 className="text-4xl font-bold text-white mb-6">Machine Inspection App</h2>
+                            <p className="text-gray-400 text-lg leading-relaxed mb-8">
+                                Prevent downtime and ensure operator safety with digitized checklists. Track machine health, scheduled maintenance, and output logs in one dashboard.
+                            </p>
+
+                            <ul className="space-y-4 mb-10">
+                                <li className="flex items-center gap-4 text-gray-300">
+                                    <span className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500"><CheckCircle size={16} /></span>
+                                    Customizable Checklists for any machine type
+                                </li>
+                                <li className="flex items-center gap-4 text-gray-300">
+                                    <span className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500"><CheckCircle size={16} /></span>
+                                    Photo proof for defects and issues
+                                </li>
+                                <li className="flex items-center gap-4 text-gray-300">
+                                    <span className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500"><CheckCircle size={16} /></span>
+                                    Instant alerts to maintenance teams
+                                </li>
+                            </ul>
+
+                            <button className="px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-gray-200 transition-colors">
+                                Request Access
+                            </button>
+                        </div>
+                        <div className="relative">
+                            <div className="glass aspect-square rounded-3xl border-white/10 flex items-center justify-center relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent" />
+                                <div className="text-2xl font-bold text-white/50">Dashboard Mockup</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+function FeatureItem({ title, desc }: { title: string, desc: string }) {
+    return (
+        <div className="glass p-5 rounded-xl border-white/5 hover:bg-white/5 transition-colors">
+            <h4 className="font-bold text-white mb-2">{title}</h4>
+            <p className="text-sm text-gray-400">{desc}</p>
+        </div>
+    );
+}
