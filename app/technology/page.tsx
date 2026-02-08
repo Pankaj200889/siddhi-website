@@ -1,7 +1,7 @@
 'use client';
 
 import { Smartphone, Cloud, FileText, CheckCircle, Flame, Factory, Lock } from 'lucide-react';
-import Link from 'next/link';
+import Image from 'next/image';
 
 export default function TechnologyPage() {
     return (
@@ -33,33 +33,19 @@ export default function TechnologyPage() {
             <section id="fire-app" className="py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                        <div className="order-2 md:order-1 relative">
-                            {/* Mockup Placeholder */}
+                        <div className="order-2 md:order-1 relative flex justify-center">
                             <div className="relative mx-auto border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl flex flex-col overflow-hidden">
                                 <div className="h-[32px] bg-gray-800 rounded-t-[2.5rem] w-full absolute top-0 left-0 z-20"></div>
                                 <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
                                 <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
                                 <div className="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
-                                <div className="rounded-[2rem] overflow-hidden w-full h-full bg-[#1a1a1a] relative flex items-center justify-center">
-                                    {/* Screen Content */}
-                                    <div className="p-6 text-center">
-                                        <Flame size={48} className="text-red-500 mx-auto mb-4" />
-                                        <h4 className="text-xl font-bold mb-2">My Inspection</h4>
-                                        <div className="space-y-3 mt-8">
-                                            <div className="bg-white/10 p-3 rounded-lg text-sm flex justify-between">
-                                                <span>Extinguisher #01</span>
-                                                <span className="text-green-400">Pass</span>
-                                            </div>
-                                            <div className="bg-white/10 p-3 rounded-lg text-sm flex justify-between">
-                                                <span>Extinguisher #02</span>
-                                                <span className="text-green-400">Pass</span>
-                                            </div>
-                                            <div className="bg-white/10 p-3 rounded-lg text-sm flex justify-between">
-                                                <span>Extinguisher #03</span>
-                                                <span className="text-red-400">Fail</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div className="rounded-[2rem] overflow-hidden w-full h-full bg-[#1a1a1a] relative">
+                                    <Image
+                                        src="/fire_app_mockup.png"
+                                        alt="Fire Extinguisher App Screen"
+                                        fill
+                                        className="object-cover"
+                                    />
                                 </div>
                             </div>
                             <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px]" />
@@ -79,10 +65,6 @@ export default function TechnologyPage() {
                                 <FeatureItem title="Auto Reports" desc="Generates PDF reports instantly for audits." />
                                 <FeatureItem title="48-Hour Lock" desc="Prevents bulk-filling; forces scheduled periodic checks." />
                             </div>
-
-                            <Link href="/contact" className="text-primary font-bold hover:text-white transition-colors flex items-center gap-2 group">
-                                Schedule a Demo <span className="group-hover:translate-x-1 transition-transform">→</span>
-                            </Link>
                         </div>
                     </div>
                 </div>
@@ -115,15 +97,15 @@ export default function TechnologyPage() {
                                     Instant alerts to maintenance teams
                                 </li>
                             </ul>
-
-                            <button className="px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-gray-200 transition-colors">
-                                Request Access
-                            </button>
                         </div>
                         <div className="relative">
                             <div className="glass aspect-square rounded-3xl border-white/10 flex items-center justify-center relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent" />
-                                <div className="text-2xl font-bold text-white/50">Dashboard Mockup</div>
+                                <Image
+                                    src="/machine_app_dashboard.png"
+                                    alt="Machine Inspection App Dashboard"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                         </div>
                     </div>

@@ -50,7 +50,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-white mb-1">Our Office</h4>
-                                        <p className="text-gray-400">123 Industrial Area, Phase 1,<br />New Delhi, India - 110020</p>
+                                        <p className="text-gray-400">104, Shopping Complex, THD Royal Court,<br />Neemrana, Alwar, Rajasthan, India - 301705</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
@@ -60,7 +60,6 @@ export default function ContactPage() {
                                     <div>
                                         <h4 className="font-bold text-white mb-1">Email Us</h4>
                                         <p className="text-gray-400">info@siddhiindustrial.com</p>
-                                        <p className="text-gray-400">support@siddhiindustrial.com</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
@@ -69,8 +68,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-white mb-1">Call Us</h4>
-                                        <p className="text-gray-400">+91 98765 43210</p>
-                                        <p className="text-gray-400 text-sm">(Mon-Sat, 9am - 6pm)</p>
+                                        <p className="text-gray-400">+91 788 118 0567</p>
                                     </div>
                                 </div>
                             </div>

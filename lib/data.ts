@@ -1,47 +1,47 @@
-import { ShieldCheck, Factory, Leaf, Droplets, Flame, Smartphone } from 'lucide-react';
+import { ShieldCheck, Factory, Leaf, Droplets, Flame, Smartphone, GraduationCap, Recycle, FlaskConical, Database } from 'lucide-react';
 
 export const services = [
     {
-        id: 'training',
-        title: 'Safety & Industrial Trainings',
-        description: 'Comprehensive safety trainings aligned with Indian industrial standards. We offer EHS programs for workforce and supervisors, covering fire safety, workplace safety, and compliance.',
+        id: 'ems',
+        title: 'Environmental Management Systems (EMS)',
+        description: 'Comprehensive emissions tracking, sustainability reporting, and resource optimization strategies for a greener future.',
+        icon: Leaf,
+        link: '/solutions#ems'
+    },
+    {
+        id: 'sms',
+        title: 'Safety Management Systems (SMS)',
+        description: 'Hazard identification, risk assessment, and behavioral safety programs to foster a zero-accident culture.',
         icon: ShieldCheck,
+        link: '/solutions#sms'
+    },
+    {
+        id: 'training',
+        title: 'EHS Training & Competence Management',
+        description: 'Role-based training programs, contractor certification, and automated refresher scheduling to ensure workforce competence.',
+        icon: GraduationCap, // Will need to import this
         link: '/solutions#training'
     },
     {
-        id: 'fire-app',
-        title: 'Fire Extinguisher Inspection App',
-        description: 'Cloud-based mobile application for QR-code enabled real-time fire extinguisher inspection. Generates audit-ready compliance reports.',
-        icon: Flame,
-        link: '/technology#fire-app'
+        id: 'waste-management',
+        title: 'Waste Management Solutions',
+        description: 'End-to-end waste tracking, inclusive of Sewage Treatment (STP) and Effluent Treatment (ETP) for total environmental compliance.',
+        icon: Recycle, // Will need to import this
+        link: '/solutions#waste-management'
     },
     {
-        id: 'machine-app',
-        title: 'Machine Inspection App',
-        description: 'Digital machine inspection and monitoring solution. Track inspection status, output, and preventative maintenance via a central dashboard.',
-        icon: Factory,
-        link: '/technology#machine-app'
+        id: 'ehs-data',
+        title: 'EHS Data & Document Management Systems',
+        description: 'Centralized digital platform for managing all EHS data, documents, and compliance records securely.',
+        icon: Database, // Will need to import this
+        link: '/solutions#ehs-data'
     },
     {
         id: 'waterless',
         title: 'Waterless Urinal Solution',
         description: 'Eco-friendly, odour-free, and low-maintenance waterless urinal systems ideal for industrial and commercial facilities.',
-        icon: Droplets, // Using Droplets as a proxy for water-related
+        icon: Droplets,
         link: '/solutions#waterless'
-    },
-    {
-        id: 'stp-etp',
-        title: 'Sewage & Effluent Treatment',
-        description: 'End-to-end STP & ETP solutions designed for regulatory environmental compliance. From design to implementation and support.',
-        icon: Factory,
-        link: '/solutions#stp-etp'
-    },
-    {
-        id: 'compostable',
-        title: 'Compostable & Plastic Reduction',
-        description: 'Sustainable compostable bag solutions to support plastic reduction initiatives and environmental regulations.',
-        icon: Leaf,
-        link: '/solutions#compostable'
     }
 ];
 

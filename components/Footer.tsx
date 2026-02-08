@@ -58,11 +58,11 @@ export default function Footer() {
                         <ul className="space-y-4 text-sm">
                             <li className="flex items-start gap-3">
                                 <MapPin size={18} className="text-primary mt-0.5 flex-shrink-0" />
-                                <span>123 Industrial Area, Phase 1,<br />New Delhi, India - 110020</span>
+                                <span>104, Shopping Complex, THD Royal Court,<br />Neemrana, Alwar, Rajasthan, India - 301705</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Phone size={18} className="text-primary flex-shrink-0" />
-                                <span>+91 98765 43210</span>
+                                <span>+91 788 118 0567</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail size={18} className="text-primary flex-shrink-0" />
