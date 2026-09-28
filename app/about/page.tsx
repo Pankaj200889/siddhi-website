@@ -117,7 +117,7 @@ export default function AboutPage() {
                                 </div>
 
                                 <div className="pt-4 border-t border-white/10 flex justify-between items-center text-xs text-gray-400">
-                                    <span>Neemrana, Rajasthan, India</span>
+                                    <span>Noida, Uttar Pradesh, India</span>
                                     <span className="text-primary font-semibold">National Footprint</span>
                                 </div>
                             </div>

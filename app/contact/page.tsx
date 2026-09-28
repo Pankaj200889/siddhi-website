@@ -50,7 +50,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-white mb-1">Our Office</h4>
-                                        <p className="text-gray-400">104, Shopping Complex, THD Royal Court,<br />Neemrana, Alwar, Rajasthan, India - 301705</p>
+                                        <p className="text-gray-400">601, Shopping Complex, Eldeco Live by the Greens,<br />Sector-150, Noida, Uttar Pradesh, India - 201312</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
@@ -59,7 +59,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-white mb-1">Email Us</h4>
-                                        <p className="text-gray-400">info@siddhiindustrial.com</p>
+                                        <p className="text-gray-400">info@siddhiss.com</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
