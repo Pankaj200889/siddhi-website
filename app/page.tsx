@@ -166,29 +166,31 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Fire App Showcase Card */}
-            <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-primary/40 transition-all duration-500">
+            <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-primary/40 transition-all duration-500 bg-black/40">
               <div className="flex items-center justify-between mb-6">
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-500/10 text-red-400 border border-red-500/20 flex items-center gap-1.5">
+                <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-red-500/10 text-red-400 border border-red-500/20 flex items-center gap-1.5">
                   <Flame size={14} /> IgnisGuard
                 </span>
-                <span className="text-xs text-gray-500 font-mono">48-HOUR LOCK TECH</span>
+                <span className="text-xs text-gray-400 font-mono bg-white/5 px-2.5 py-1 rounded-md border border-white/5">48-HOUR LOCK TECH</span>
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">IgnisGuard - Fire Extinguisher Inspection App</h3>
               <p className="text-gray-400 text-sm mb-6 font-light leading-relaxed">
                 Prevents remote bulk-filling by forcing physical QR scans at extinguisher locations. Automatically locks out periodic checks to ensure audit compliance.
               </p>
               
-              <div className="relative h-72 rounded-2xl overflow-hidden border border-white/10 bg-black/60 flex items-center justify-center">
-                <Image 
-                  src="/fire_app_mockup.png" 
-                  alt="IgnisGuard Fire Extinguisher Inspection App"
-                  fill
-                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
-                />
+              <div className="relative h-[380px] rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-b from-black/80 to-black/40 flex items-center justify-center p-4">
+                <div className="relative w-[210px] h-[340px] rounded-[2rem] overflow-hidden border-[6px] border-gray-800 shadow-2xl bg-white transition-transform duration-500 group-hover:scale-105">
+                  <Image 
+                    src="/fire_app_mockup.png" 
+                    alt="IgnisGuard Officer Portal UI"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
 
               <div className="mt-6 flex justify-between items-center pt-4 border-t border-white/10">
-                <span className="text-xs text-gray-400">Physical Location Verification</span>
+                <span className="text-xs text-gray-400">Officer Portal & Physical QR Scan</span>
                 <Link href="/technology" className="text-xs font-bold text-primary hover:underline flex items-center gap-1">
                   Learn Details <ArrowRight size={14} />
                 </Link>
@@ -196,25 +198,35 @@ export default function Home() {
             </div>
 
             {/* Machine App Showcase Card */}
-            <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-secondary/40 transition-all duration-500">
+            <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-secondary/40 transition-all duration-500 bg-black/40">
               <div className="flex items-center justify-between mb-6">
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center gap-1.5">
+                <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center gap-1.5">
                   <Factory size={14} /> EquipGuard
                 </span>
-                <span className="text-xs text-gray-500 font-mono">REAL-TIME DASHBOARD</span>
+                <span className="text-xs text-gray-400 font-mono bg-white/5 px-2.5 py-1 rounded-md border border-white/5">REAL-TIME DASHBOARD</span>
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">EquipGuard - Machine Inspection App</h3>
               <p className="text-gray-400 text-sm mb-6 font-light leading-relaxed">
                 Track plant equipment status, preventive maintenance schedules, operator checklists, and photo-proof defect logs from a centralized dashboard.
               </p>
               
-              <div className="relative h-72 rounded-2xl overflow-hidden border border-white/10 bg-black/60 flex items-center justify-center">
-                <Image 
-                  src="/machine_app_dashboard.png" 
-                  alt="EquipGuard Machine Inspection App Dashboard"
-                  fill
-                  className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
-                />
+              <div className="relative h-[380px] rounded-2xl overflow-hidden border border-white/10 bg-[#0c0d12] flex flex-col p-3 shadow-2xl">
+                <div className="flex items-center justify-between pb-2 px-2 border-b border-white/10">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                  </div>
+                  <span className="text-[10px] text-gray-400 font-mono">Deep Dive Analytics Dashboard</span>
+                </div>
+                <div className="relative flex-1 rounded-lg overflow-hidden mt-2">
+                  <Image 
+                    src="/machine_app_dashboard.png" 
+                    alt="EquipGuard Machine Inspection Analytics Dashboard"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
               </div>
 
               <div className="mt-6 flex justify-between items-center pt-4 border-t border-white/10">
