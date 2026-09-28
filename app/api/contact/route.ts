@@ -96,36 +96,83 @@ export async function POST(request: Request) {
         }
 
         // Web3Forms service
-        const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY;
+        const web3formsKey = (process.env.WEB3FORMS_ACCESS_KEY || '').trim();
         if (web3formsKey && web3formsKey !== 'your_web3forms_access_key_here') {
             try {
+                const payload = {
+                    access_key: web3formsKey,
+                    from_name: 'Siddhi Industrial Website',
+                    subject: `New Lead: ${name} (${interest || 'General Inquiry'})`,
+                    name,
+                    email,
+                    phone: phone || 'Not provided',
+                    company: company || 'Not provided',
+                    interest: interest || 'General Inquiry',
+                    message: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nCompany: ${company || 'Not provided'}\nInterest: ${interest || 'General Inquiry'}\n\nMessage / Requirement:\n${message}`
+                };
+
+                // Primary JSON Request with User-Agent to pass Cloudflare verification
                 const res = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
                     },
-                    body: JSON.stringify({
-                        access_key: web3formsKey,
-                        from_name: 'Siddhi Industrial Website',
-                        subject: `New Lead: ${name} (${interest || 'General Inquiry'})`,
-                        name,
-                        email,
-                        phone: phone || 'Not provided',
-                        company: company || 'Not provided',
-                        interest: interest || 'General Inquiry',
-                        message: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nCompany: ${company || 'Not provided'}\nInterest: ${interest || 'General Inquiry'}\n\nMessage / Requirement:\n${message}`
-                    })
+                    body: JSON.stringify(payload)
                 });
-                const data = await res.json();
-                if (data.success) {
+
+                const rawText = await res.text();
+                let data: any = null;
+
+                try {
+                    data = JSON.parse(rawText);
+                } catch (parseErr) {
+                    console.warn('[WEB3FORMS JSON PARSE WARNING] Received non-JSON response, attempting urlencoded fallback:', rawText.substring(0, 200));
+                }
+
+                if (data && data.success) {
                     return NextResponse.json({ success: true, message: 'Inquiry sent successfully to info@siddhiss.com.' });
-                } else {
+                }
+
+                if (data && !data.success) {
                     return NextResponse.json(
                         { error: `Web3Forms Error: ${data.message || 'Invalid Access Key or unverified email address.'}` },
                         { status: 400 }
                     );
                 }
+
+                // Fallback attempt: URLSearchParams (form-urlencoded)
+                const formData = new URLSearchParams();
+                Object.entries(payload).forEach(([key, val]) => formData.append(key, String(val)));
+
+                const resFallback = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Accept': 'application/json',
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                    },
+                    body: formData.toString()
+                });
+
+                const rawFallbackText = await resFallback.text();
+                let fallbackData: any = null;
+                try {
+                    fallbackData = JSON.parse(rawFallbackText);
+                } catch (e) {
+                    console.error('[WEB3FORMS FALLBACK ERROR] HTML Response:', rawFallbackText.substring(0, 300));
+                }
+
+                if (fallbackData && fallbackData.success) {
+                    return NextResponse.json({ success: true, message: 'Inquiry sent successfully to info@siddhiss.com.' });
+                }
+
+                return NextResponse.json(
+                    { error: `Web3Forms Dispatch Failed: ${fallbackData?.message || data?.message || 'Access Key verification required.'}` },
+                    { status: 400 }
+                );
+
             } catch (web3Err: any) {
                 console.error('[WEB3FORMS ERROR]:', web3Err);
                 return NextResponse.json(
