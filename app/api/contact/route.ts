@@ -122,11 +122,71 @@ export async function POST(request: Request) {
             </html>
         `;
 
-        // 1. Resend API Service (Recommended for Next.js / Vercel with zero Microsoft restrictions)
+        const clientConfirmationHtml = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Inquiry Received - Siddhi Industrial Solutions</title>
+            </head>
+            <body style="margin: 0; padding: 0; background-color: #0b0f19; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+                <div style="max-width: 600px; margin: 30px auto; background-color: #111827; border-radius: 16px; border: 1px solid #1f2937; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
+                    <div style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); padding: 32px 30px; border-bottom: 1px solid #1e293b;">
+                        <h1 style="color: #ffffff; margin: 0 0 6px 0; font-size: 22px; font-weight: 800;">
+                            Siddhi Industrial Solutions
+                        </h1>
+                        <p style="color: #38bdf8; margin: 0; font-size: 13px; font-weight: 600;">
+                            Industrial EHS, Fire Safety & Compliance Engineering
+                        </p>
+                    </div>
+
+                    <div style="padding: 32px 30px; color: #e2e8f0; line-height: 1.6;">
+                        <h2 style="color: #ffffff; margin: 0 0 16px 0; font-size: 18px; font-weight: 700;">
+                            Thank you for reaching out, ${name}!
+                        </h2>
+                        
+                        <p style="color: #cbd5e1; font-size: 14px; margin: 0 0 20px 0;">
+                            We have received your inquiry regarding <strong style="color: #ff8c61;">${interest || 'General Inquiry'}</strong>. Our technical specialists and EHS safety engineers are reviewing your requirement and will get back to you shortly.
+                        </p>
+
+                        <div style="background-color: #1e293b; border-radius: 12px; border: 1px solid #334155; padding: 18px; margin-bottom: 24px;">
+                            <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-bottom: 10px;">
+                                Your Request Summary:
+                            </div>
+                            <p style="margin: 4px 0; font-size: 13px; color: #e2e8f0;"><strong>Area of Interest:</strong> ${interest || 'General Inquiry'}</p>
+                            <p style="margin: 4px 0; font-size: 13px; color: #e2e8f0;"><strong>Company:</strong> ${company || 'Not provided'}</p>
+                            <p style="margin: 4px 0; font-size: 13px; color: #e2e8f0;"><strong>Message:</strong> ${message}</p>
+                        </div>
+
+                        <div style="background-color: #0f172a; border-radius: 12px; padding: 18px; border: 1px solid #1e293b; margin-bottom: 24px;">
+                            <div style="font-size: 12px; font-weight: 700; color: #ffffff; margin-bottom: 8px;">Direct Contact Info:</div>
+                            <p style="margin: 2px 0; font-size: 13px; color: #94a3b8;">📍 <strong>Office Address:</strong> 601, Shopping Complex, Eldeco Live by the Greens, Sector-150, Noida, UP, India - 201312</p>
+                            <p style="margin: 2px 0; font-size: 13px; color: #94a3b8;">📧 <strong>Email:</strong> info@siddhiss.com</p>
+                            <p style="margin: 2px 0; font-size: 13px; color: #94a3b8;">📞 <strong>Phone:</strong> +91 788 118 0567</p>
+                        </div>
+
+                        <div style="text-align: center;">
+                            <a href="https://siddhiss.com" style="display: inline-block; background-color: #ff8c61; color: #000000; font-weight: 800; font-size: 13px; padding: 12px 24px; border-radius: 8px; text-decoration: none;">
+                                Visit siddhiss.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="background-color: #090d16; padding: 16px 30px; text-align: center; border-top: 1px solid #1e293b; font-size: 11px; color: #64748b;">
+                        © ${new Date().getFullYear()} Siddhi Industrial Solutions. All rights reserved.
+                    </div>
+                </div>
+            </body>
+            </html>
+        `;
+
+        // 1. Resend API Service
         const resendKey = (process.env.RESEND_API_KEY || '').trim();
         if (resendKey) {
             try {
-                const res = await fetch('https://api.resend.com/emails', {
+                // Send Admin Notification to info@siddhiss.com
+                const resAdmin = await fetch('https://api.resend.com/emails', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${resendKey}`,
@@ -141,15 +201,29 @@ export async function POST(request: Request) {
                     })
                 });
 
-                const data = await res.json();
-                if (res.ok && data.id) {
+                const dataAdmin = await resAdmin.json();
+
+                // Send Auto-Reply Confirmation to Customer Requestor (email)
+                try {
+                    await fetch('https://api.resend.com/emails', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${resendKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            from: 'Siddhi Industrial Solutions <onboarding@resend.dev>',
+                            to: [email],
+                            subject: `Inquiry Received - Siddhi Industrial Solutions`,
+                            html: clientConfirmationHtml
+                        })
+                    });
+                } catch (clientErr) {
+                    console.warn('[RESEND CLIENT AUTO-REPLY WARNING]:', clientErr);
+                }
+
+                if (resAdmin.ok && dataAdmin.id) {
                     return NextResponse.json({ success: true, message: 'Notification email sent successfully via Resend.' });
-                } else {
-                    console.error('[RESEND API ERROR]:', data);
-                    return NextResponse.json(
-                        { error: `Resend Dispatch Failed: ${data?.message || 'Invalid API Key'}` },
-                        { status: 400 }
-                    );
                 }
             } catch (resendErr: any) {
                 console.error('[RESEND ERROR]:', resendErr);
