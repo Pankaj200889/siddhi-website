@@ -1,9 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { services, stats, industrySectors } from '@/lib/data';
-import { ArrowRight, ShieldCheck, CheckCircle2, Flame, Factory, Lock, Award, Sparkles, Smartphone } from 'lucide-react';
+import { ArrowRight, ShieldCheck, CheckCircle2, Flame, Factory, Lock, Award, Sparkles, Smartphone, QrCode, BarChart3, Shield, Check, X, FileText, Activity } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Home() {
@@ -164,12 +163,12 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Fire App Showcase Card */}
-            <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-primary/40 transition-all duration-500 bg-black/40">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* IgnisGuard High-Impact UI Showcase Card */}
+            <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-red-500/40 transition-all duration-500 bg-black/50 shadow-2xl">
               <div className="flex items-center justify-between mb-6">
                 <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-red-500/10 text-red-400 border border-red-500/20 flex items-center gap-1.5">
-                  <Flame size={14} /> IgnisGuard
+                  <Flame size={14} /> IgnisGuard Pro
                 </span>
                 <span className="text-xs text-gray-400 font-mono bg-white/5 px-2.5 py-1 rounded-md border border-white/5">48-HOUR LOCK TECH</span>
               </div>
@@ -178,28 +177,83 @@ export default function Home() {
                 Prevents remote bulk-filling by forcing physical QR scans at extinguisher locations. Automatically locks out periodic checks to ensure audit compliance.
               </p>
               
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-b from-black/80 to-black/40 flex items-center justify-center p-2 shadow-2xl">
-                <div className="relative w-full max-w-[220px] rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-500">
-                  <Image 
-                    src="/fire_app_mockup.png" 
-                    alt="IgnisGuard Officer Portal UI"
-                    width={220}
-                    height={400}
-                    className="w-full h-auto object-contain rounded-xl"
-                  />
+              {/* High-Impact Interactive Tech UI Component */}
+              <div className="relative rounded-2xl overflow-hidden border border-red-500/20 bg-[#12131a] p-5 shadow-2xl">
+                {/* Mobile UI Mockup Screen Header */}
+                <div className="flex justify-between items-center pb-4 border-b border-white/10 mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-red-500/20 text-red-500 flex items-center justify-center">
+                      <Flame size={18} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-white tracking-wide">FIRE GUARD PRO</p>
+                      <p className="text-[10px] text-gray-400">PHYSICAL INSPECTIONS</p>
+                    </div>
+                  </div>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                    SYSTEM ACTIVE
+                  </span>
+                </div>
+
+                {/* Extinguisher Items List */}
+                <div className="space-y-3 mb-5">
+                  <div className="p-3.5 rounded-xl bg-white/5 border border-emerald-500/30 flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-white">ID: EXT-A104</span>
+                        <span className="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">PASS</span>
+                      </div>
+                      <p className="text-[11px] text-gray-400 mt-0.5">Location: Main Hallway Ground Floor</p>
+                    </div>
+                    <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                      <Check size={14} />
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-white/5 border border-red-500/40 flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-white">ID: EXT-B201</span>
+                        <span className="text-[10px] text-red-400 font-bold bg-red-500/10 px-2 py-0.5 rounded">NEEDS SERVICE</span>
+                      </div>
+                      <p className="text-[11px] text-red-300 mt-0.5">Location: Boiler Room (Low Pressure)</p>
+                    </div>
+                    <div className="w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center">
+                      <X size={14} />
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-white/5 border border-emerald-500/30 flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-white">ID: EXT-C302</span>
+                        <span className="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">PASS</span>
+                      </div>
+                      <p className="text-[11px] text-gray-400 mt-0.5">Location: Server Room 3rd Floor</p>
+                    </div>
+                    <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                      <Check size={14} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Trigger Button */}
+                <div className="w-full py-3 bg-gradient-to-r from-red-600 to-red-500 rounded-xl font-bold text-white text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg shadow-red-500/20">
+                  <QrCode size={16} />
+                  <span>Scan Physical QR Tag</span>
                 </div>
               </div>
 
               <div className="mt-6 flex justify-between items-center pt-4 border-t border-white/10">
                 <span className="text-xs text-gray-400">Officer Portal & Physical QR Scan</span>
-                <Link href="/technology" className="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                <Link href="/technology" className="text-xs font-bold text-red-400 hover:underline flex items-center gap-1">
                   Learn Details <ArrowRight size={14} />
                 </Link>
               </div>
             </div>
 
-            {/* Machine App Showcase Card */}
-            <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-secondary/40 transition-all duration-500 bg-black/40">
+            {/* EquipGuard High-Impact UI Showcase Card */}
+            <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-blue-500/40 transition-all duration-500 bg-black/50 shadow-2xl">
               <div className="flex items-center justify-between mb-6">
                 <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center gap-1.5">
                   <Factory size={14} /> EquipGuard
@@ -211,29 +265,78 @@ export default function Home() {
                 Track plant equipment status, preventive maintenance schedules, operator checklists, and photo-proof defect logs from a centralized dashboard.
               </p>
               
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#0c0d12] flex flex-col p-2 shadow-2xl">
-                <div className="flex items-center justify-between pb-2 px-2 border-b border-white/10">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+              {/* High-Impact Enterprise Dashboard UI Component */}
+              <div className="relative rounded-2xl overflow-hidden border border-blue-500/20 bg-[#0c0d14] p-5 shadow-2xl">
+                {/* Console Bar */}
+                <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                      <BarChart3 size={18} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-white tracking-wide">EquipGuard Analytics Console</p>
+                      <p className="text-[10px] text-gray-400">OPERATIONAL SHIFT MATRIX</p>
+                    </div>
                   </div>
-                  <span className="text-[10px] text-gray-400 font-mono">Deep Dive Analytics Dashboard</span>
+                  <span className="text-[10px] text-blue-400 font-mono bg-blue-500/10 px-2.5 py-1 rounded border border-blue-500/20 flex items-center gap-1">
+                    <Activity size={12} /> LIVE ANALYTICS
+                  </span>
                 </div>
-                <div className="relative rounded-lg overflow-hidden mt-2">
-                  <Image 
-                    src="/machine_app_dashboard.png" 
-                    alt="EquipGuard Machine Inspection Analytics Dashboard"
-                    width={600}
-                    height={380}
-                    className="w-full h-auto object-contain rounded-lg group-hover:scale-105 transition-transform duration-500"
-                  />
+
+                {/* Metrics Grid */}
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/5">
+                    <p className="text-[10px] text-gray-400 uppercase tracking-wider">Overall Yield</p>
+                    <div className="flex items-baseline justify-between mt-1">
+                      <span className="text-lg font-black text-white">97.3%</span>
+                      <span className="text-[10px] text-emerald-400 font-bold">+2.4% vs Target</span>
+                    </div>
+                    <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-2">
+                      <div className="bg-blue-500 h-full rounded-full w-[97.3%]" />
+                    </div>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/5">
+                    <p className="text-[10px] text-gray-400 uppercase tracking-wider">Quality Rate</p>
+                    <div className="flex items-baseline justify-between mt-1">
+                      <span className="text-lg font-black text-white">97.5%</span>
+                      <span className="text-[10px] text-emerald-400 font-bold">Stable Target</span>
+                    </div>
+                    <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-2">
+                      <div className="bg-emerald-400 h-full rounded-full w-[97.5%]" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Machine Heatmap Preview */}
+                <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 mb-4">
+                  <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-2">Machine Efficiency Heatmap</p>
+                  <div className="grid grid-cols-4 gap-2 text-center">
+                    <div className="p-2 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-[10px] font-bold text-emerald-300">
+                      M-201 (Welder)
+                    </div>
+                    <div className="p-2 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-[10px] font-bold text-emerald-300">
+                      M-102 (Bender)
+                    </div>
+                    <div className="p-2 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-[10px] font-bold text-emerald-300">
+                      M-305 (Assembly)
+                    </div>
+                    <div className="p-2 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-[10px] font-bold text-emerald-300">
+                      M-101 (Laser)
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Trigger Button */}
+                <div className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-bold text-white text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20">
+                  <FileText size={16} />
+                  <span>Generate Weekly PDF Audit Report</span>
                 </div>
               </div>
 
               <div className="mt-6 flex justify-between items-center pt-4 border-t border-white/10">
                 <span className="text-xs text-gray-400">Deep Dive Operational Analytics</span>
-                <Link href="/technology" className="text-xs font-bold text-secondary hover:underline flex items-center gap-1">
+                <Link href="/technology" className="text-xs font-bold text-blue-400 hover:underline flex items-center gap-1">
                   Learn Details <ArrowRight size={14} />
                 </Link>
               </div>
