@@ -65,72 +65,92 @@ export async function POST(request: Request) {
             </div>
         `;
 
-        if (smtpHost && smtpUser && smtpPass) {
-            // Transporter setup
-            const transporter = nodemailer.createTransport({
-                host: smtpHost,
-                port: smtpPort,
-                secure: smtpPort === 465,
-                auth: {
-                    user: smtpUser,
-                    pass: smtpPass,
-                },
-            });
+        if (smtpHost && smtpUser && smtpPass && smtpPass !== 'your_email_or_app_password_here' && smtpPass !== 'your_email_password_here') {
+            try {
+                const transporter = nodemailer.createTransport({
+                    host: smtpHost,
+                    port: smtpPort,
+                    secure: smtpPort === 465,
+                    auth: {
+                        user: smtpUser,
+                        pass: smtpPass,
+                    },
+                });
 
-            await transporter.sendMail({
-                from: `"Siddhi Industrial Website" <${smtpUser}>`,
-                to: targetEmail,
-                replyTo: email,
-                subject: `New Lead: ${name} (${interest})`,
-                html: emailContentHtml,
-            });
+                await transporter.sendMail({
+                    from: `"Siddhi Industrial Website" <${smtpUser}>`,
+                    to: targetEmail,
+                    replyTo: email,
+                    subject: `New Lead: ${name} (${interest})`,
+                    html: emailContentHtml,
+                });
 
-            return NextResponse.json({ success: true, message: 'Notification email sent successfully via SMTP.' });
-        }
-
-        // Web3Forms or Resend fallback if WEB3FORMS_ACCESS_KEY is set
-        const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY;
-        if (web3formsKey) {
-            const res = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    access_key: web3formsKey,
-                    name,
-                    email,
-                    phone,
-                    company,
-                    interest,
-                    message,
-                    subject: `New Inquiry from ${name} - Siddhi Industrial`,
-                    to: targetEmail
-                })
-            });
-            const data = await res.json();
-            if (data.success) {
-                return NextResponse.json({ success: true, message: 'Inquiry forwarded via Web3Forms service.' });
+                return NextResponse.json({ success: true, message: 'Notification email sent successfully via SMTP.' });
+            } catch (smtpErr: any) {
+                console.error('[SMTP ERROR]:', smtpErr);
+                return NextResponse.json(
+                    { error: `SMTP Email Dispatch Failed: ${smtpErr?.message || 'Invalid credentials or host connection timeout.'}` },
+                    { status: 500 }
+                );
             }
         }
 
-        // Default response if no SMTP is configured yet
+        // Web3Forms service
+        const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY;
+        if (web3formsKey && web3formsKey !== 'your_web3forms_access_key_here') {
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: web3formsKey,
+                        name,
+                        email,
+                        phone,
+                        company,
+                        interest,
+                        message,
+                        subject: `New Inquiry from ${name} - Siddhi Industrial`,
+                        to: targetEmail
+                    })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    return NextResponse.json({ success: true, message: 'Inquiry forwarded via Web3Forms service.' });
+                } else {
+                    return NextResponse.json(
+                        { error: `Web3Forms Error: ${data.message || 'Invalid Access Key or unverified email.'}` },
+                        { status: 400 }
+                    );
+                }
+            } catch (web3Err: any) {
+                console.error('[WEB3FORMS ERROR]:', web3Err);
+                return NextResponse.json(
+                    { error: `Web3Forms Dispatch Failed: ${web3Err?.message || 'Connection error'}` },
+                    { status: 500 }
+                );
+            }
+        }
+
+        // Fallback logging if no valid keys are set yet
         console.log(`[CONTACT FORM SUBMISSION] Received inquiry for ${targetEmail}:`, {
             name, email, company, phone, interest, message
         });
 
         return NextResponse.json({
             success: true,
-            message: 'Inquiry received successfully.',
+            message: 'Inquiry received successfully. (Pending SMTP/Web3Forms Key configuration on production host)',
             details: {
                 targetEmail,
                 smtpConfigured: false,
-                note: 'Configure SMTP_HOST, SMTP_USER, SMTP_PASS in Vercel/Railway env to receive instant automated emails.'
+                note: 'Configure WEB3FORMS_ACCESS_KEY or SMTP credentials in Vercel to activate instant email delivery.'
             }
         });
 
     } catch (error: any) {
         console.error('Contact Form Submission Error:', error);
         return NextResponse.json(
-            { error: 'An unexpected error occurred while processing your request.' },
+            { error: `Submission failed: ${error?.message || 'An unexpected server error occurred.'}` },
             { status: 500 }
         );
     }
