@@ -160,14 +160,22 @@ export async function POST(request: Request) {
             }
         }
 
-        // Always capture inquiry and return success so customers are never blocked
+        // Catch-all response: If neither SMTP nor Web3Forms processed the email
         console.log(`[CONTACT FORM SUBMISSION RECEIVED] for ${targetEmail}:`, {
             name, email, company, phone, interest, message
         });
 
+        const debugInfo = {
+            hasSmtpHost: Boolean(smtpHost),
+            hasSmtpUser: Boolean(smtpUser),
+            hasSmtpPass: Boolean(smtpPass),
+            hasWeb3Key: Boolean(web3formsKey)
+        };
+
         return NextResponse.json({
             success: true,
-            message: 'Thank you! Your quote request has been received. Our team will get back to you shortly at ' + email + '.'
+            message: `Thank you! Your quote request from ${name} has been received. Our team will get back to you shortly at ${email}.`,
+            envCheck: debugInfo
         });
 
     } catch (error: any) {
