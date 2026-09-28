@@ -16,47 +16,110 @@ export async function POST(request: Request) {
 
         const targetEmail = process.env.NOTIFICATION_EMAIL || 'info@siddhiss.com';
 
-        const emailContentHtml = `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; rounded: 10px; background-color: #ffffff;">
-                <div style="background-color: #0f0f0f; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
-                    <h2 style="color: #ffffff; margin: 0; font-size: 22px;">New Quote & Inquiry Request</h2>
-                    <p style="color: #ff8c61; margin: 5px 0 0 0; font-size: 14px; font-weight: bold;">Siddhi Industrial Solutions</p>
-                </div>
-                <div style="padding: 25px; color: #333333; line-height: 1.6;">
-                    <p style="font-size: 16px; font-weight: bold; margin-bottom: 20px;">You have received a new inquiry from the website contact form:</p>
-                    
-                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                        <tr style="border-bottom: 1px solid #eeeeee;">
-                            <td style="padding: 10px 0; font-weight: bold; width: 35%; color: #555555;">Full Name:</td>
-                            <td style="padding: 10px 0; color: #111111;">${name}</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eeeeee;">
-                            <td style="padding: 10px 0; font-weight: bold; color: #555555;">Email Address:</td>
-                            <td style="padding: 10px 0; color: #111111;"><a href="mailto:${email}" style="color: #ff8c61; font-weight: bold;">${email}</a></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eeeeee;">
-                            <td style="padding: 10px 0; font-weight: bold; color: #555555;">Phone Number:</td>
-                            <td style="padding: 10px 0; color: #111111;">${phone || 'Not provided'}</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eeeeee;">
-                            <td style="padding: 10px 0; font-weight: bold; color: #555555;">Company:</td>
-                            <td style="padding: 10px 0; color: #111111;">${company || 'Not provided'}</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eeeeee;">
-                            <td style="padding: 10px 0; font-weight: bold; color: #555555;">Area of Interest:</td>
-                            <td style="padding: 10px 0; color: #111111; font-weight: bold; color: #0070f3;">${interest || 'General Inquiry'}</td>
-                        </tr>
-                    </table>
+        const formattedDate = new Date().toLocaleString('en-US', {
+            timeZone: 'Asia/Kolkata',
+            dateStyle: 'full',
+            timeStyle: 'short'
+        });
 
-                    <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #ff8c61; border-radius: 4px; margin-top: 20px;">
-                        <p style="margin: 0; font-weight: bold; color: #555555; font-size: 13px;">Message / Requirement Details:</p>
-                        <p style="margin: 10px 0 0 0; color: #222222; font-size: 14px; white-space: pre-wrap;">${message}</p>
+        const emailContentHtml = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>New Lead Inquiry - Siddhi Industrial Solutions</title>
+            </head>
+            <body style="margin: 0; padding: 0; background-color: #0b0f19; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+                <div style="max-width: 640px; margin: 30px auto; background-color: #111827; border-radius: 16px; border: 1px solid #1f2937; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+                    
+                    <!-- Header Banner -->
+                    <div style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); padding: 32px 30px; text-align: left; border-bottom: 1px solid #1e293b;">
+                        <div style="display: inline-block; background-color: rgba(255, 140, 97, 0.15); border: 1px solid rgba(255, 140, 97, 0.3); color: #ff8c61; padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">
+                            ⚡ New Inquiry Received
+                        </div>
+                        <h1 style="color: #ffffff; margin: 0 0 6px 0; font-size: 24px; font-weight: 800;">
+                            Siddhi Industrial Solutions
+                        </h1>
+                        <p style="color: #94a3b8; margin: 0; font-size: 13px;">
+                            ${formattedDate} (IST)
+                        </p>
                     </div>
+
+                    <!-- Main Content Card -->
+                    <div style="padding: 32px 30px; color: #e2e8f0;">
+                        
+                        <!-- Client Highlight Card -->
+                        <div style="background-color: #1e293b; border-radius: 12px; border: 1px solid #334155; padding: 20px; margin-bottom: 24px;">
+                            <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #38bdf8; margin-bottom: 14px;">
+                                Client Contact Overview
+                            </div>
+                            
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="padding: 8px 0; color: #94a3b8; font-size: 13px; font-weight: 600; width: 35%;">Client Name:</td>
+                                    <td style="padding: 8px 0; color: #ffffff; font-size: 15px; font-weight: 700;">${name}</td>
+                                </tr>
+                                <tr style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                                    <td style="padding: 8px 0; color: #94a3b8; font-size: 13px; font-weight: 600;">Email Address:</td>
+                                    <td style="padding: 8px 0; color: #38bdf8; font-size: 14px; font-weight: 600;"><a href="mailto:${email}" style="color: #38bdf8; text-decoration: none;">${email}</a></td>
+                                </tr>
+                                <tr style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                                    <td style="padding: 8px 0; color: #94a3b8; font-size: 13px; font-weight: 600;">Phone Number:</td>
+                                    <td style="padding: 8px 0; color: #ffffff; font-size: 14px; font-weight: 600;">${phone || 'Not provided'}</td>
+                                </tr>
+                                <tr style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                                    <td style="padding: 8px 0; color: #94a3b8; font-size: 13px; font-weight: 600;">Company / Org:</td>
+                                    <td style="padding: 8px 0; color: #ffffff; font-size: 14px; font-weight: 600;">${company || 'Not provided'}</td>
+                                </tr>
+                                <tr style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                                    <td style="padding: 8px 0; color: #94a3b8; font-size: 13px; font-weight: 600;">Solution Required:</td>
+                                    <td style="padding: 8px 0;">
+                                        <span style="display: inline-block; background-color: rgba(255, 140, 97, 0.2); color: #ff8c61; border: 1px solid rgba(255, 140, 97, 0.4); padding: 2px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;">
+                                            ${interest || 'General Inquiry'}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- Requirement / Message Box -->
+                        <div style="background-color: #0f172a; border-left: 4px solid #ff8c61; border-radius: 0 12px 12px 0; padding: 20px; margin-bottom: 28px;">
+                            <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #ff8c61; margin-bottom: 8px;">
+                                Project Requirement Details:
+                            </div>
+                            <div style="color: #f1f5f9; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">
+                                ${message}
+                            </div>
+                        </div>
+
+                        <!-- Call-to-Action Buttons -->
+                        <div style="text-align: center; margin-top: 24px; margin-bottom: 12px;">
+                            <a href="mailto:${email}?subject=Re:%20Siddhi%20Industrial%20Solutions%20Inquiry%20-%20${encodeURIComponent(interest || 'General')}" style="display: inline-block; background: linear-gradient(135deg, #ff8c61 0%, #f97316 100%); color: #000000; font-weight: 800; font-size: 14px; padding: 14px 28px; border-radius: 10px; text-decoration: none; margin-right: 10px;">
+                                ✉️ Reply to ${name.split(' ')[0]}
+                            </a>
+                            ${phone ? `
+                            <a href="tel:${phone}" style="display: inline-block; background-color: #1e293b; border: 1px solid #334155; color: #ffffff; font-weight: 700; font-size: 14px; padding: 14px 24px; border-radius: 10px; text-decoration: none;">
+                                📞 Call Client
+                            </a>
+                            ` : ''}
+                        </div>
+
+                    </div>
+
+                    <!-- Footer -->
+                    <div style="background-color: #090d16; padding: 20px 30px; text-align: center; border-top: 1px solid #1e293b; font-size: 12px; color: #64748b;">
+                        <p style="margin: 0 0 6px 0;">
+                            Sent automatically from <a href="https://siddhiss.com" style="color: #94a3b8; text-decoration: underline;">siddhiss.com</a> contact gateway.
+                        </p>
+                        <p style="margin: 0; font-size: 11px; color: #475569;">
+                            Siddhi Industrial Solutions • Noida, UP, India
+                        </p>
+                    </div>
+
                 </div>
-                <div style="background-color: #f4f4f4; padding: 15px; text-align: center; font-size: 12px; color: #777777; border-radius: 0 0 8px 8px;">
-                    This is an automated notification from <a href="https://siddhiss.com" style="color: #333333; text-decoration: underline;">siddhiss.com</a>
-                </div>
-            </div>
+            </body>
+            </html>
         `;
 
         // 1. Resend API Service (Recommended for Next.js / Vercel with zero Microsoft restrictions)
