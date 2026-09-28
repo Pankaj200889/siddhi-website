@@ -178,13 +178,14 @@ export default function Home() {
                 Prevents remote bulk-filling by forcing physical QR scans at extinguisher locations. Automatically locks out periodic checks to ensure audit compliance.
               </p>
               
-              <div className="relative h-[380px] rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-b from-black/80 to-black/40 flex items-center justify-center p-4">
-                <div className="relative w-[210px] h-[340px] rounded-[2rem] overflow-hidden border-[6px] border-gray-800 shadow-2xl bg-white transition-transform duration-500 group-hover:scale-105">
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-b from-black/80 to-black/40 flex items-center justify-center p-2 shadow-2xl">
+                <div className="relative w-full max-w-[220px] rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-500">
                   <Image 
                     src="/fire_app_mockup.png" 
                     alt="IgnisGuard Officer Portal UI"
-                    fill
-                    className="object-cover"
+                    width={220}
+                    height={400}
+                    className="w-full h-auto object-contain rounded-xl"
                   />
                 </div>
               </div>
@@ -210,7 +211,7 @@ export default function Home() {
                 Track plant equipment status, preventive maintenance schedules, operator checklists, and photo-proof defect logs from a centralized dashboard.
               </p>
               
-              <div className="relative h-[380px] rounded-2xl overflow-hidden border border-white/10 bg-[#0c0d12] flex flex-col p-3 shadow-2xl">
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#0c0d12] flex flex-col p-2 shadow-2xl">
                 <div className="flex items-center justify-between pb-2 px-2 border-b border-white/10">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
@@ -219,12 +220,13 @@ export default function Home() {
                   </div>
                   <span className="text-[10px] text-gray-400 font-mono">Deep Dive Analytics Dashboard</span>
                 </div>
-                <div className="relative flex-1 rounded-lg overflow-hidden mt-2">
+                <div className="relative rounded-lg overflow-hidden mt-2">
                   <Image 
                     src="/machine_app_dashboard.png" 
                     alt="EquipGuard Machine Inspection Analytics Dashboard"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    width={600}
+                    height={380}
+                    className="w-full h-auto object-contain rounded-lg group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>

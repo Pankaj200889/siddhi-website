@@ -34,18 +34,18 @@ export default function TechnologyPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div className="order-2 md:order-1 relative flex justify-center">
-                            <div className="relative mx-auto border-gray-800 bg-gray-900 border-[12px] rounded-[2.8rem] h-[580px] w-[290px] shadow-2xl flex flex-col overflow-hidden">
-                                <div className="h-[28px] bg-gray-900 rounded-t-[2.5rem] w-full absolute top-0 left-0 z-20"></div>
-                                <div className="rounded-[2rem] overflow-hidden w-full h-full bg-white relative">
+                            <div className="relative mx-auto rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] border border-white/10 max-w-[340px] bg-gradient-to-b from-white/10 to-transparent p-2 group transition-transform duration-500 hover:scale-105">
+                                <div className="rounded-2xl overflow-hidden relative">
                                     <Image
                                         src="/fire_app_mockup.png"
                                         alt="IgnisGuard Officer Portal UI"
-                                        fill
-                                        className="object-cover"
+                                        width={340}
+                                        height={620}
+                                        className="w-full h-auto object-contain rounded-2xl"
                                     />
                                 </div>
                             </div>
-                            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px]" />
+                            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]" />
                         </div>
                         <div className="order-1 md:order-2">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 text-red-500 text-sm font-bold uppercase tracking-wider mb-6 border border-red-500/20">
@@ -116,7 +116,7 @@ export default function TechnologyPage() {
                             </a>
                         </div>
                         <div className="relative">
-                            <div className="glass rounded-3xl border border-white/10 p-3 bg-[#0c0d12] shadow-2xl relative overflow-hidden">
+                            <div className="glass rounded-3xl border border-white/10 p-3 bg-[#0c0d12] shadow-[0_25px_60px_rgba(0,0,0,0.6)] relative overflow-hidden group transition-transform duration-500 hover:scale-105">
                                 <div className="flex items-center justify-between pb-3 px-3 border-b border-white/10 mb-2">
                                     <div className="flex items-center gap-2">
                                         <span className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -125,12 +125,13 @@ export default function TechnologyPage() {
                                     </div>
                                     <span className="text-xs text-gray-400 font-mono">EquipGuard Analytics Console</span>
                                 </div>
-                                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+                                <div className="relative rounded-2xl overflow-hidden">
                                     <Image
                                         src="/machine_app_dashboard.png"
                                         alt="EquipGuard Machine Inspection Analytics Console"
-                                        fill
-                                        className="object-cover"
+                                        width={800}
+                                        height={550}
+                                        className="w-full h-auto object-contain rounded-2xl"
                                     />
                                 </div>
                             </div>
