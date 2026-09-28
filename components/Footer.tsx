@@ -44,11 +44,12 @@ export default function Footer() {
                     <div>
                         <h3 className="text-white font-semibold mb-6 tracking-wide uppercase text-sm">Our Solutions</h3>
                         <ul className="space-y-3 text-sm">
-                            <FooterLink href="/solutions#training" label="Safety Trainings" />
-                            <FooterLink href="/technology#fire-app" label="Fire Extinguisher App" />
-                            <FooterLink href="/technology#machine-app" label="Machine Inspection App" />
-                            <FooterLink href="/solutions#waterless" label="Waterless Urinals" />
-                            <FooterLink href="/solutions#stp-etp" label="STP & ETP Solutions" />
+                            <FooterLink href="/solutions#ems" label="Environmental Management (EMS)" />
+                            <FooterLink href="/solutions#sms" label="Safety Management (SMS)" />
+                            <FooterLink href="/solutions#training" label="EHS Training & Competence" />
+                            <FooterLink href="/solutions#waste-management" label="Waste Management (STP/ETP)" />
+                            <FooterLink href="/solutions#ehs-data" label="EHS Data & Documents" />
+                            <FooterLink href="/solutions#waterless" label="Waterless Urinal Solutions" />
                         </ul>
                     </div>
 
