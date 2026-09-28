@@ -52,9 +52,9 @@ export default function TechnologyPage() {
                         </div>
                         <div className="order-1 md:order-2">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 text-red-500 text-sm font-bold uppercase tracking-wider mb-6">
-                                <Flame size={16} /> Flagship Product
+                                <Flame size={16} /> IgnisGuard
                             </div>
-                            <h2 className="text-4xl font-bold text-white mb-6">Fire Extinguisher Inspection App</h2>
+                            <h2 className="text-4xl font-bold text-white mb-6">IgnisGuard - Fire Extinguisher Inspection App</h2>
                             <p className="text-gray-400 text-lg leading-relaxed mb-8">
                                 A revolutionary way to manage fire safety. Our cloud-based app uses QR codes to ensure inspections are done physically and on time with our unique "48-hour lock" feature.
                             </p>
@@ -76,9 +76,9 @@ export default function TechnologyPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div>
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 text-sm font-bold uppercase tracking-wider mb-6">
-                                <Factory size={16} /> Asset Management
+                                <Factory size={16} /> EquipGuard
                             </div>
-                            <h2 className="text-4xl font-bold text-white mb-6">Machine Inspection App</h2>
+                            <h2 className="text-4xl font-bold text-white mb-6">EquipGuard - Machine Inspection App</h2>
                             <p className="text-gray-400 text-lg leading-relaxed mb-8">
                                 Prevent downtime and ensure operator safety with digitized checklists. Track machine health, scheduled maintenance, and output logs in one dashboard.
                             </p>

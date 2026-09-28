@@ -169,11 +169,11 @@ export default function Home() {
             <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-primary/40 transition-all duration-500">
               <div className="flex items-center justify-between mb-6">
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-500/10 text-red-400 border border-red-500/20 flex items-center gap-1.5">
-                  <Flame size={14} /> Fire Extinguisher App
+                  <Flame size={14} /> IgnisGuard
                 </span>
                 <span className="text-xs text-gray-500 font-mono">48-HOUR LOCK TECH</span>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">QR-Verified Fire Safety Inspections</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">IgnisGuard - Fire Extinguisher Inspection App</h3>
               <p className="text-gray-400 text-sm mb-6 font-light leading-relaxed">
                 Prevents remote bulk-filling by forcing physical QR scans at extinguisher locations. Automatically locks out periodic checks to ensure audit compliance.
               </p>
@@ -181,7 +181,7 @@ export default function Home() {
               <div className="relative h-72 rounded-2xl overflow-hidden border border-white/10 bg-black/60 flex items-center justify-center">
                 <Image 
                   src="/fire_app_mockup.png" 
-                  alt="Fire Extinguisher Inspection App"
+                  alt="IgnisGuard Fire Extinguisher Inspection App"
                   fill
                   className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                 />
@@ -199,11 +199,11 @@ export default function Home() {
             <div className="glass-card p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-secondary/40 transition-all duration-500">
               <div className="flex items-center justify-between mb-6">
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center gap-1.5">
-                  <Factory size={14} /> Machine Inspection App
+                  <Factory size={14} /> EquipGuard
                 </span>
                 <span className="text-xs text-gray-500 font-mono">REAL-TIME DASHBOARD</span>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Machine Health & Output Monitoring</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">EquipGuard - Machine Inspection App</h3>
               <p className="text-gray-400 text-sm mb-6 font-light leading-relaxed">
                 Track plant equipment status, preventive maintenance schedules, operator checklists, and photo-proof defect logs from a centralized dashboard.
               </p>
@@ -211,7 +211,7 @@ export default function Home() {
               <div className="relative h-72 rounded-2xl overflow-hidden border border-white/10 bg-black/60 flex items-center justify-center">
                 <Image 
                   src="/machine_app_dashboard.png" 
-                  alt="Machine Inspection App Dashboard"
+                  alt="EquipGuard Machine Inspection App Dashboard"
                   fill
                   className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                 />
