@@ -1,6 +1,6 @@
 'use client';
 
-import { Smartphone, Cloud, FileText, CheckCircle, Flame, Factory, Lock } from 'lucide-react';
+import { Smartphone, Cloud, FileText, CheckCircle, Flame, Factory, Lock, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 
 export default function TechnologyPage() {
@@ -56,12 +56,22 @@ export default function TechnologyPage() {
                                 A revolutionary way to manage fire safety. Our cloud-based mobile platform uses physical QR verification to ensure inspections are performed at the location on time with our unique "48-hour lock" feature.
                             </p>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                                 <FeatureItem title="QR Code Scan" desc="Ensures physical presence at the extinguisher location." />
                                 <FeatureItem title="Cloud Storage" desc="Secure, unlimited history of all compliance data." />
                                 <FeatureItem title="Auto Reports" desc="Generates PDF reports instantly for audits." />
                                 <FeatureItem title="48-Hour Lock" desc="Prevents bulk-filling; forces scheduled periodic checks." />
                             </div>
+
+                            <a 
+                                href="https://demo.siddhiss.com/" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-red-500/10 text-red-400 font-semibold text-sm hover:bg-red-500/20 transition-all border border-red-500/20 shadow-lg group"
+                            >
+                                <span>Explore IgnisGuard Demo (demo.siddhiss.com)</span>
+                                <ExternalLink size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -80,7 +90,7 @@ export default function TechnologyPage() {
                                 Prevent downtime and ensure operator safety with digitized checklists. Track machine health, shift performance matrix, scheduled maintenance, and output logs in one enterprise dashboard.
                             </p>
 
-                            <ul className="space-y-4 mb-10">
+                            <ul className="space-y-4 mb-8">
                                 <li className="flex items-center gap-4 text-gray-300">
                                     <span className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20"><CheckCircle size={16} /></span>
                                     Deep Dive Operational Analytics & Shift Distribution
@@ -94,6 +104,16 @@ export default function TechnologyPage() {
                                     Instant PDF Weekly Report Generator
                                 </li>
                             </ul>
+
+                            <a 
+                                href="https://machine.siddhiss.com/" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-blue-500/10 text-blue-400 font-semibold text-sm hover:bg-blue-500/20 transition-all border border-blue-500/20 shadow-lg group"
+                            >
+                                <span>Explore EquipGuard Portal (machine.siddhiss.com)</span>
+                                <ExternalLink size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                            </a>
                         </div>
                         <div className="relative">
                             <div className="glass rounded-3xl border border-white/10 p-3 bg-[#0c0d12] shadow-2xl relative overflow-hidden">
