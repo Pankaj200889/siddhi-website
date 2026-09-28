@@ -16,12 +16,6 @@ export async function POST(request: Request) {
 
         const targetEmail = process.env.NOTIFICATION_EMAIL || 'info@siddhiss.com';
 
-        // Check for SMTP Credentials
-        const smtpHost = process.env.SMTP_HOST;
-        const smtpPort = parseInt(process.env.SMTP_PORT || '587');
-        const smtpUser = process.env.SMTP_USER;
-        const smtpPass = process.env.SMTP_PASS;
-
         const emailContentHtml = `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; rounded: 10px; background-color: #ffffff;">
                 <div style="background-color: #0f0f0f; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
@@ -64,6 +58,46 @@ export async function POST(request: Request) {
                 </div>
             </div>
         `;
+
+        // 1. Resend API Service (Recommended for Next.js / Vercel with zero Microsoft restrictions)
+        const resendKey = (process.env.RESEND_API_KEY || '').trim();
+        if (resendKey) {
+            try {
+                const res = await fetch('https://api.resend.com/emails', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${resendKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        from: 'Siddhi Website Inquiry <onboarding@resend.dev>',
+                        to: [targetEmail],
+                        reply_to: email,
+                        subject: `New Lead: ${name} (${interest || 'General Inquiry'})`,
+                        html: emailContentHtml
+                    })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.id) {
+                    return NextResponse.json({ success: true, message: 'Notification email sent successfully via Resend.' });
+                } else {
+                    console.error('[RESEND API ERROR]:', data);
+                    return NextResponse.json(
+                        { error: `Resend Dispatch Failed: ${data?.message || 'Invalid API Key'}` },
+                        { status: 400 }
+                    );
+                }
+            } catch (resendErr: any) {
+                console.error('[RESEND ERROR]:', resendErr);
+            }
+        }
+
+        // Check for SMTP Credentials
+        const smtpHost = process.env.SMTP_HOST;
+        const smtpPort = parseInt(process.env.SMTP_PORT || '587');
+        const smtpUser = process.env.SMTP_USER;
+        const smtpPass = process.env.SMTP_PASS;
 
         if (smtpHost && smtpUser && smtpPass && smtpPass !== 'your_email_or_app_password_here' && smtpPass !== 'your_email_password_here') {
             try {
