@@ -101,25 +101,28 @@ export async function POST(request: Request) {
             try {
                 const res = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
                     body: JSON.stringify({
                         access_key: web3formsKey,
+                        from_name: 'Siddhi Industrial Website',
+                        subject: `New Lead: ${name} (${interest || 'General Inquiry'})`,
                         name,
                         email,
-                        phone,
-                        company,
-                        interest,
-                        message,
-                        subject: `New Inquiry from ${name} - Siddhi Industrial`,
-                        to: targetEmail
+                        phone: phone || 'Not provided',
+                        company: company || 'Not provided',
+                        interest: interest || 'General Inquiry',
+                        message: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nCompany: ${company || 'Not provided'}\nInterest: ${interest || 'General Inquiry'}\n\nMessage / Requirement:\n${message}`
                     })
                 });
                 const data = await res.json();
                 if (data.success) {
-                    return NextResponse.json({ success: true, message: 'Inquiry forwarded via Web3Forms service.' });
+                    return NextResponse.json({ success: true, message: 'Inquiry sent successfully to info@siddhiss.com.' });
                 } else {
                     return NextResponse.json(
-                        { error: `Web3Forms Error: ${data.message || 'Invalid Access Key or unverified email.'}` },
+                        { error: `Web3Forms Error: ${data.message || 'Invalid Access Key or unverified email address.'}` },
                         { status: 400 }
                     );
                 }
