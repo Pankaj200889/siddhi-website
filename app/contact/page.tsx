@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -13,11 +13,50 @@ export default function ContactPage() {
         message: ''
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log(formData);
-        alert("Thank you! We will get back to you shortly.");
+        setIsSubmitting(true);
+        setStatus({ type: null, message: '' });
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                setStatus({
+                    type: 'success',
+                    message: 'Thank you! Your inquiry has been submitted successfully. We will reach out to you shortly at ' + formData.email + '.'
+                });
+                setFormData({
+                    name: '',
+                    email: '',
+                    company: '',
+                    phone: '',
+                    interest: 'General Inquiry',
+                    message: ''
+                });
+            } else {
+                setStatus({
+                    type: 'error',
+                    message: data.error || 'Failed to submit inquiry. Please try again or email us directly at info@siddhiss.com.'
+                });
+            }
+        } catch (error) {
+            setStatus({
+                type: 'error',
+                message: 'A network error occurred. Please try again or reach out to info@siddhiss.com.'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -172,11 +211,35 @@ export default function ContactPage() {
                                 ></textarea>
                             </div>
 
+                            {status.type && (
+                                <div className={`p-4 rounded-xl text-sm flex items-start gap-3 border ${
+                                    status.type === 'success' 
+                                        ? 'bg-emerald-950/40 border-emerald-500/30 text-emerald-300' 
+                                        : 'bg-rose-950/40 border-rose-500/30 text-rose-300'
+                                }`}>
+                                    {status.type === 'success' ? (
+                                        <CheckCircle className="w-5 h-5 flex-shrink-0 text-emerald-400 mt-0.5" />
+                                    ) : (
+                                        <AlertCircle className="w-5 h-5 flex-shrink-0 text-rose-400 mt-0.5" />
+                                    )}
+                                    <span>{status.message}</span>
+                                </div>
+                            )}
+
                             <button
                                 type="submit"
-                                className="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-lg text-black font-bold text-lg hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2"
+                                disabled={isSubmitting}
+                                className="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-lg text-black font-bold text-lg hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                Send Message <Send size={20} />
+                                {isSubmitting ? (
+                                    <>
+                                        <Loader2 size={20} className="animate-spin" /> Submitting Request...
+                                    </>
+                                ) : (
+                                    <>
+                                        Send Message <Send size={20} />
+                                    </>
+                                )}
                             </button>
                         </form>
                     </div>
