@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   description: 'Trusted industrial safety, EHS compliance, and sustainability solutions partner. Offering safety training, inspection apps, and eco-friendly products.',
   metadataBase: new URL('https://www.siddhiss.com'),
   icons: {
-    icon: '/logo.jpg',
-    apple: '/logo.jpg',
+    icon: '/logo_white.png',
+    apple: '/logo_white.png',
   },
 };
 

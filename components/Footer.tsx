@@ -11,20 +11,12 @@ export default function Footer() {
 
                     {/* Company Info */}
                     <div>
-                        <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
+                        <Link href="/" className="inline-block mb-6 group">
                             <img 
-                                src="/logo.jpg" 
+                                src="/logo_white.png" 
                                 alt="Siddhi Industrial Solutions Logo" 
-                                className="h-14 w-auto object-contain rounded-lg border border-white/10 shadow-lg shadow-black/50"
+                                className="h-14 sm:h-16 w-auto object-contain group-hover:opacity-90 transition-opacity"
                             />
-                            <div>
-                                <div className="text-xl font-bold tracking-tight text-white">
-                                    Siddhi<span className="text-gradient">Industrial</span>
-                                </div>
-                                <div className="text-[10px] text-primary font-semibold tracking-wider uppercase">
-                                    Safety & Compliance Experts
-                                </div>
-                            </div>
                         </Link>
                         <p className="text-sm leading-relaxed mb-6 max-w-xs">
                             Trusted partner for industrial safety, EHS compliance, and sustainable solutions. Delivering technology-driven inspections and eco-friendly products for a safer tomorrow.
