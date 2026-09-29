@@ -32,14 +32,14 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
               <img 
                 src="/logo_white.png" 
                 alt="Siddhi Industrial Solutions Logo" 
-                className="h-10 sm:h-12 w-auto object-contain group-hover:opacity-90 transition-opacity"
+                className="h-9 sm:h-11 md:h-12 w-auto object-contain group-hover:opacity-90 transition-opacity"
               />
-              <span className="text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:opacity-90 transition-opacity">
-                Siddhi<span className="text-gradient">Industrial</span>
+              <span className="text-base sm:text-xl md:text-2xl font-bold tracking-tight text-white group-hover:opacity-90 transition-opacity whitespace-nowrap">
+                Siddhi <span className="text-gradient">Industrial</span> Solutions
               </span>
             </Link>
           </div>
