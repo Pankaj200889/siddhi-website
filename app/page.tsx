@@ -33,10 +33,10 @@ export default function Home() {
             className="flex flex-col items-center"
           >
             {/* Pill Label */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 mb-8 hover:bg-white/5 transition-colors cursor-default">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass border border-white/10 mb-8 hover:bg-white/5 transition-colors cursor-default shadow-lg shadow-black/40">
+              <img src="/logo.jpg" alt="Siddhi Industrial Logo" className="w-7 h-7 object-contain rounded-full border border-primary/40 shadow-sm" />
               <span className="text-xs sm:text-sm font-semibold text-gray-300 tracking-wider uppercase">
-                ISO Certified 45001:2018 | EHS & Compliance Experts
+                ISO Certified 45001:2018 | Safety & Compliance Experts
               </span>
             </div>
 

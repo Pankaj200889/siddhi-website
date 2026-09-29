@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   title: 'Siddhi Industrial Solutions | Safety & Compliance Experts',
   description: 'Trusted industrial safety, EHS compliance, and sustainability solutions partner. Offering safety training, inspection apps, and eco-friendly products.',
   metadataBase: new URL('https://www.siddhiss.com'),
+  icons: {
+    icon: '/logo.jpg',
+    apple: '/logo.jpg',
+  },
 };
 
 export default function RootLayout({
